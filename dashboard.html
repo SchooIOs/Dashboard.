@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dashboard</title>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<style>
+:root{--bg:#080808;--card:#161616;--card2:#202020;--fg:#f3f1e9;--muted:#a6a49d;--line:#484846;--bright:#e7e4da}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.35 Arial,Helvetica,sans-serif;letter-spacing:-.015em}body:before,body:after{content:"";position:fixed;z-index:-1;border:1px solid #30302e;border-radius:80px;pointer-events:none}body:before{width:67vw;height:70vh;right:-27vw;bottom:-25vh;background:linear-gradient(135deg,#181818 8%,#050505 70%)}body:after{width:43vw;height:30vh;right:-17vw;top:-11vh}.shell{max-width:1180px;margin:auto;padding:20px}.top{height:33px;display:flex;align-items:center;justify-content:space-between;margin-bottom:17px}.top h1{margin:0;font-size:18px}.top-right{display:flex;gap:17px;align-items:center;font-size:12px;color:var(--muted)}button{font:inherit;color:inherit;cursor:pointer}.icon-btn{padding:5px 9px;background:none;border:1px solid var(--line);border-radius:10px}.layout{display:grid;grid-template-columns:236px minmax(420px,1fr) 276px;gap:17px;align-items:start}.card{background:linear-gradient(145deg,#1d1d1c,#101010);border:1px solid var(--line);border-radius:27px;padding:18px;box-shadow:inset 0 1px #ffffff12}.eyebrow{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:bold}.clock{height:202px;display:grid;place-items:center;position:relative;overflow:hidden}.clock:before{content:"";position:absolute;inset:9px;border:1px dashed #77766f;border-radius:23px}.clock time{z-index:1;font-size:64px;font-weight:800;letter-spacing:-.09em}.calendar{margin-top:17px}.month{margin:2px 0 13px;font-size:12px;font-weight:bold}.week,.days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;font-size:11px}.week{color:var(--muted);font-weight:bold;margin-bottom:7px}.days span{height:22px;display:grid;place-items:center}.days .today{border:1px solid var(--bright);border-radius:50%}.weather{min-height:388px}.weather-head{display:flex;justify-content:space-between;padding:3px 0 13px;border-bottom:1px solid #77766f}.city{font-size:15px;font-weight:bold}.temp{font-size:58px;letter-spacing:-.075em;line-height:1}.condition{text-align:right;font-weight:bold;padding-top:14px}.condition small{display:block;color:var(--muted);font-weight:normal}.hours{display:grid;grid-template-columns:repeat(6,1fr);padding:14px 0 15px;border-bottom:1px solid #77766f;text-align:center}.hours b{font-size:11px;display:block}.hours span{font-size:22px;display:block;margin:7px 0}.forecast .row{display:grid;grid-template-columns:25px 27px 30px 1fr 30px;align-items:center;gap:8px;padding:8px 0;font-size:13px}.bar{height:5px;background:#383836;border-radius:10px;overflow:hidden}.bar i{display:block;height:100%;background:var(--bright);border-radius:10px}.weather-foot{margin-top:11px;color:var(--muted);font-size:11px}.location{background:none;border:0;color:var(--bright);padding:0;text-decoration:underline;text-underline-offset:3px}.health h2{font-size:17px;margin:4px 0 18px}.health-row{display:flex;align-items:center;gap:16px}.score{height:110px;width:110px;flex:none;border-radius:50%;display:grid;place-items:center;position:relative;background:conic-gradient(var(--bright) 0 84%,#3b3b39 84%)}.score:before{content:"";position:absolute;inset:9px;border-radius:50%;background:#161616}.score b,.score small{z-index:1;position:relative}.score b{font-size:35px;letter-spacing:-.07em}.score small{position:absolute;top:69px;color:var(--muted);font-size:10px}.stats{width:100%}.stat{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #353533}.stat small{color:var(--muted)}.connect{margin-top:18px;padding:10px 11px;width:100%;background:#eeeeea;color:#171717;border:0;border-radius:12px;font-weight:bold;text-align:left}.connect small{display:block;font-weight:normal;opacity:.72;margin-top:2px}.quick{margin-top:17px}.quick h2{font-size:16px;margin:5px 0 13px}.quick p{display:flex;justify-content:space-between;margin:10px 0;font-size:13px}.quick span{color:var(--muted)}.tabs{grid-column:2/span 2}.tablist{display:flex;gap:6px;margin:0 0 12px}.tab{border:0;background:transparent;padding:8px 12px;border-radius:10px;color:var(--muted);font-weight:bold}.tab.active{background:#e9e6dd;color:#151515}.panel{display:none}.panel.active{display:grid}.mail-panel{grid-template-columns:1fr 1fr;gap:17px}.inbox{padding:0;overflow:hidden}.inbox header{padding:16px 18px 12px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.inbox h2{font-size:17px;margin:3px 0 0}.open{background:none;border:0;color:var(--bright);padding:0;text-decoration:underline;text-underline-offset:3px;font-size:12px}.mails{padding:0 18px}.mail{display:grid;grid-template-columns:36px 1fr auto;gap:10px;align-items:center;padding:13px 0;border-bottom:1px solid #353533}.mail:last-child{border:0}.initial{width:34px;height:34px;border:1px solid #777;border-radius:10px;display:grid;place-items:center;font-weight:bold}.mail strong,.mail small{display:block}.mail strong{font-size:13px}.mail small,.mail time{font-size:11px;color:var(--muted)}.mail small{max-width:235px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.today-list h2{font-size:17px;margin:4px 0 13px}.event{display:grid;grid-template-columns:45px 1fr;gap:9px;padding:11px 0;border-top:1px solid #353533}.event:first-of-type{border:0}.event time{color:var(--muted);font-size:12px}.event strong{display:block;font-size:13px}.event small{color:var(--muted);font-size:11px}.news-panel{grid-template-columns:repeat(3,1fr);gap:12px}.story{min-height:172px;padding:17px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(145deg,#1d1d1c,#101010);border:1px solid var(--line);border-radius:22px}.story small{color:var(--muted);font-size:10px;font-weight:bold}.story b{font-size:17px;line-height:1.18;letter-spacing:-.03em}.connection-note{grid-column:2/span 2;color:var(--muted);font-size:11px;margin:0 3px}.connection-note i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#e4e1d7;margin-right:6px}@media(max-width:900px){.layout{grid-template-columns:220px 1fr}.health{grid-column:1}.tabs{grid-column:1/span 2}.connection-note{grid-column:1/span 2}}@media(max-width:620px){.shell{padding:15px}.layout{display:flex;flex-direction:column;gap:13px}.card,.story{border-radius:22px}.weather{order:-1;width:100%}.tabs,.mail-panel,.news-panel{width:100%}.mail-panel,.news-panel{grid-template-columns:1fr}.mail small{max-width:190px}.top-right .date{display:none}.connection-note{width:100%}}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.62);display:grid;place-items:center;z-index:50;padding:20px}
+.modal-overlay[hidden]{display:none}
+.modal{max-width:440px;width:100%;display:flex;flex-direction:column;gap:13px}
+.modal h2{margin:0;font-size:17px}
+.modal p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+.modal label{display:block;font-size:12px;color:var(--muted)}
+.modal a{color:var(--bright)}
+.modal input{width:100%;margin-top:5px;padding:10px 11px;background:#0f0f0f;border:1px solid var(--line);border-radius:10px;color:var(--fg);font:inherit}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:4px}
+.modal-actions button{padding:9px 14px;border-radius:10px;border:1px solid var(--line);background:#1d1d1c;color:var(--fg)}
+.modal-actions .primary{background:#eeeeea;color:#171717;border:0;font-weight:bold}
+.hint{font-size:10px;color:var(--muted);margin-top:-6px}
+</style></head><body><main class="shell"><header class="top"><h1>Dashboard</h1><div class="top-right"><span class="date" id="date"></span><button class="icon-btn" id="settings-btn" aria-label="Einstellungen">⚙</button></div></header><section class="layout">
+<aside><article class="card clock"><time id="time"></time></article><article class="card calendar"><div class="month">SEPTEMBER</div><div class="week"><span>M</span><span>D</span><span>M</span><span>D</span><span>F</span><span>S</span><span>S</span></div><div class="days"><span></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span class="today">14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span></div></article></aside>
+<article class="card weather"><div class="weather-head"><div><div class="city" id="city">Dein Standort</div><div class="temp" id="temp">—°</div></div><div class="condition" id="condition">Wetter laden<small id="range">Standort verwenden</small></div></div><div class="hours"><div><b>Jetzt</b><span>◌</span><b id="now">—°</b></div><div><b>11 Uhr</b><span>◌</span><b>—°</b></div><div><b>12 Uhr</b><span>◌</span><b>—°</b></div><div><b>13 Uhr</b><span>◌</span><b>—°</b></div><div><b>14 Uhr</b><span>◌</span><b>—°</b></div><div><b>15 Uhr</b><span>◌</span><b>—°</b></div></div><div class="forecast"><div class="row"><b>Di</b><span>◌</span><span>—°</span><div class="bar"><i style="width:70%"></i></div><b>—°</b></div><div class="row"><b>Mi</b><span>◌</span><span>—°</span><div class="bar"><i style="width:56%"></i></div><b>—°</b></div><div class="row"><b>Do</b><span>◌</span><span>—°</span><div class="bar"><i style="width:63%"></i></div><b>—°</b></div><div class="row"><b>Fr</b><span>◌</span><span>—°</span><div class="bar"><i style="width:77%"></i></div><b>—°</b></div></div><div class="weather-foot"><button class="location" id="use-location">Meinen Standort für Wetter verwenden</button></div></article>
+<aside><article class="card health"><div class="eyebrow">Health Tracker</div><h2>Dein Körper heute</h2><div class="health-row"><div class="score"><b>—</b><small>Erholung</small></div><div class="stats"><div class="stat"><small>Schlaf</small><b>—</b></div><div class="stat"><small>Schritte</small><b>—</b></div><div class="stat"><small>Ruhepuls</small><b>—</b></div></div></div><button class="connect" id="fitbit-connect">Fitbit verbinden<small>Erfordert Fitbit Client-ID (⚙)</small></button></article><article class="card quick"><div class="eyebrow">Heute</div><h2>Auf einen Blick</h2><p><span>Kalender</span><b>2 Termine</b></p><p><span>Posteingang</span><b>3 wichtig</b></p><p><span>Wetter</span><b id="weather-status">Noch nicht aktiv</b></p></article></aside>
+<section class="tabs"><div class="tablist" role="tablist"><button class="tab active" data-tab="overview">Übersicht</button><button class="tab" data-tab="news">News</button></div><div class="panel mail-panel active" id="overview"><article class="card inbox"><header><div><div class="eyebrow">Gmail</div><h2>Wichtige E-Mails</h2></div><button class="open" id="google-connect">Verbinden →</button></header><div class="mails"><div class="mail"><span class="initial">—</span><div><strong>Gmail noch nicht verbunden</strong><small>Nach dem Verbinden erscheinen hier deine wichtigen E-Mails.</small></div></div></div></article><article class="card today-list"><div class="eyebrow">Google Kalender</div><h2>Dein Tag</h2><div id="today-events"><div class="event"><time>—</time><div><strong>Kalender noch nicht verbunden</strong><small>Über den Gmail-Button oben mitverbinden.</small></div></div></div></article></div><div class="panel news-panel" id="news"><article class="story"><small>NEWS</small><b>Dein persönlicher Nachrichtenüberblick erscheint hier</b><small>Quellen und Themen wählst du selbst aus</small></article><article class="story"><small>TECHNOLOGIE</small><b>Keine überladenen Meldungen – nur die Themen, die dir wichtig sind</b><small>Filterbar nach deinen Interessen</small></article><article class="story"><small>FÜR DICH</small><b>Aktuelle Empfehlungen an einem klaren Ort</b><small>Wird nach dem Einrichten aktualisiert</small></article></div></section><p class="connection-note"><i></i> Wetter, Kalender und Fitbit aktualisieren sich automatisch alle 5 Minuten und beim Öffnen der Seite. Gmail und Kalender brauchen beim allerersten Mal einen Klick auf „Verbinden" – danach merkt sich die Seite das und versucht sich beim nächsten Öffnen automatisch (ohne Klick) neu anzumelden.</p></section>
+
+<div class="modal-overlay" id="modal-overlay" hidden>
+  <div class="modal card">
+    <h2>Einstellungen</h2>
+    <p>Diese Werte sind öffentliche Client-IDs (kein Geheimnis) und werden nur lokal in diesem Browser gespeichert – nirgendwo sonst hin geschickt.</p>
+    <label>Google OAuth Client-ID
+      <input type="text" id="input-google-id" placeholder="123abc.apps.googleusercontent.com">
+    </label>
+    <div class="hint">Google Cloud Console → APIs &amp; Dienste → Anmeldedaten → OAuth-Client-ID (Typ „Webanwendung"). Gmail- und Kalender-API in der Bibliothek aktivieren.</div>
+    <label>Fitbit Client-ID
+      <input type="text" id="input-fitbit-id" placeholder="23ABCD">
+    </label>
+    <div class="hint">dev.fitbit.com → Manage → Register An App → OAuth 2.0 Application Type: „Personal", Client Type: „Public/Client-Side".</div>
+    <label>Redirect-URI (bei beiden exakt so eintragen)
+      <input type="text" id="redirect-uri-field" readonly onclick="this.select()">
+    </label>
+    <div class="modal-actions">
+      <button id="modal-close">Schließen</button>
+      <button class="primary" id="modal-save">Speichern</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------- Uhrzeit / Datum ---------- */
+const dateEl=document.getElementById('date'),timeEl=document.getElementById('time');
+dateEl.textContent=new Date().toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long'});
+function tick(){timeEl.textContent=new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}
+tick();setInterval(tick,30000);
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab,.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.tab).classList.add('active')});
+
+/* ---------- Wetter ---------- */
+async function fetchWeather(lat,lon){
+  try{
+    const u=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&timezone=auto`;
+    const r=await fetch(u),d=await r.json(),t=Math.round(d.current.temperature_2m);
+    document.getElementById('temp').textContent=t+'°';
+    document.getElementById('now').textContent=t+'°';
+    document.getElementById('condition').firstChild.textContent='Aktuell';
+    document.getElementById('range').textContent='Dein Standort';
+    document.getElementById('weather-status').textContent=t+'° · aktualisiert '+new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});
+    document.getElementById('city').textContent='Dein Standort ↗';
+  }catch(e){document.getElementById('weather-status').textContent='Nicht verfügbar'}
+}
+document.getElementById('use-location').onclick=()=>{
+  if(!navigator.geolocation)return;
+  document.getElementById('weather-status').textContent='Wird geladen';
+  navigator.geolocation.getCurrentPosition(p=>{
+    safeSet('dash_geo_lat',p.coords.latitude);
+    safeSet('dash_geo_lon',p.coords.longitude);
+    fetchWeather(p.coords.latitude,p.coords.longitude);
+  },()=>document.getElementById('weather-status').textContent='Freigabe nötig');
+};
+
+/* ---------- Hilfsfunktionen ---------- */
+function escapeHtml(str){return String(str).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function safeGet(key){try{return localStorage.getItem(key)}catch(e){return null}}
+function safeSet(key,val){try{localStorage.setItem(key,val)}catch(e){}}
+function redirectUri(){return location.origin+location.pathname;}
+
+/* ---------- Einstellungen-Modal ---------- */
+const overlay=document.getElementById('modal-overlay');
+function openSettings(){
+  document.getElementById('input-google-id').value=safeGet('dash_google_client_id')||'';
+  document.getElementById('input-fitbit-id').value=safeGet('dash_fitbit_client_id')||'';
+  document.getElementById('redirect-uri-field').value=redirectUri();
+  overlay.hidden=false;
+}
+document.getElementById('settings-btn').onclick=openSettings;
+document.getElementById('modal-close').onclick=()=>overlay.hidden=true;
+overlay.onclick=(e)=>{if(e.target===overlay)overlay.hidden=true;};
+document.getElementById('modal-save').onclick=()=>{
+  safeSet('dash_google_client_id',document.getElementById('input-google-id').value.trim());
+  safeSet('dash_fitbit_client_id',document.getElementById('input-fitbit-id').value.trim());
+  overlay.hidden=true;
+  googleTokenClient=null; // neu initialisieren mit ggf. neuer Client-ID
+};
+
+/* ---------- Google (Gmail + Kalender) ---------- */
+let googleTokenClient=null, googleAccessToken=null;
+function initGoogleTokenClient(clientId){
+  if(googleTokenClient)return;
+  googleTokenClient=google.accounts.oauth2.initTokenClient({
+    client_id:clientId,
+    scope:'https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/calendar.readonly',
+    callback:(resp)=>{
+      if(resp.error){
+        document.getElementById('google-connect').textContent='Verbinden →';
+        return;
+      }
+      googleAccessToken=resp.access_token;
+      safeSet('dash_google_connected','1');
+      document.getElementById('google-connect').textContent='Aktualisieren →';
+      loadGmail();
+      loadCalendar();
+    }
+  });
+}
+function connectGoogle(){
+  const clientId=safeGet('dash_google_client_id');
+  if(!clientId){openSettings();return;}
+  if(!window.google || !window.google.accounts){
+    document.getElementById('google-connect').textContent='Lädt…';
+    setTimeout(connectGoogle,400);
+    return;
+  }
+  initGoogleTokenClient(clientId);
+  googleTokenClient.requestAccessToken();
+}
+document.getElementById('google-connect').onclick=(e)=>{e.preventDefault();connectGoogle();};
+
+function trySilentGoogleLogin(){
+  const clientId=safeGet('dash_google_client_id');
+  if(!clientId || !safeGet('dash_google_connected'))return;
+  if(!window.google || !window.google.accounts){setTimeout(trySilentGoogleLogin,400);return;}
+  initGoogleTokenClient(clientId);
+  googleTokenClient.requestAccessToken({prompt:''});
+}
+
+async function loadGmail(){
+  const mailsEl=document.querySelector('.mails');
+  mailsEl.innerHTML='<div class="mail"><span class="initial">…</span><div><strong>Lade E-Mails…</strong></div></div>';
+  try{
+    const listRes=await fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages?maxResults=5&q='+encodeURIComponent('is:important OR is:unread'),{headers:{Authorization:'Bearer '+googleAccessToken}});
+    const listData=await listRes.json();
+    if(!listData.messages||!listData.messages.length){
+      mailsEl.innerHTML='<div class="mail"><span class="initial">✓</span><div><strong>Keine wichtigen E-Mails</strong><small>Posteingang ist aktuell leer.</small></div></div>';
+      return;
+    }
+    const details=await Promise.all(listData.messages.map(m=>
+      fetch(`https://gmail.googleapis.com/gmail/v1/users/me/messages/${m.id}?format=metadata&metadataHeaders=From&metadataHeaders=Subject`,{headers:{Authorization:'Bearer '+googleAccessToken}}).then(r=>r.json())
+    ));
+    mailsEl.innerHTML=details.map(msg=>{
+      const headers=(msg.payload&&msg.payload.headers)||[];
+      const from=(headers.find(h=>h.name==='From')||{}).value||'Unbekannt';
+      const subject=(headers.find(h=>h.name==='Subject')||{}).value||'(kein Betreff)';
+      const name=from.split('<')[0].trim().replace(/"/g,'');
+      const initial=(name.charAt(0)||'?').toUpperCase();
+      return `<div class="mail"><span class="initial">${escapeHtml(initial)}</span><div><strong>${escapeHtml(name)}</strong><small>${escapeHtml(subject)}</small></div></div>`;
+    }).join('');
+  }catch(e){
+    mailsEl.innerHTML='<div class="mail"><span class="initial">!</span><div><strong>Fehler beim Laden</strong><small>Bitte erneut verbinden.</small></div></div>';
+  }
+}
+
+async function loadCalendar(){
+  const el=document.getElementById('today-events');
+  el.innerHTML='<div class="event"><time>…</time><div><strong>Lade Termine…</strong></div></div>';
+  try{
+    const start=new Date();start.setHours(0,0,0,0);
+    const end=new Date();end.setHours(23,59,59,999);
+    const url=`https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=${encodeURIComponent(start.toISOString())}&timeMax=${encodeURIComponent(end.toISOString())}&singleEvents=true&orderBy=startTime`;
+    const res=await fetch(url,{headers:{Authorization:'Bearer '+googleAccessToken}});
+    const data=await res.json();
+    if(!data.items||!data.items.length){
+      el.innerHTML='<div class="event"><time>—</time><div><strong>Keine Termine heute</strong></div></div>';
+      return;
+    }
+    el.innerHTML=data.items.map(ev=>{
+      const startStr=ev.start.dateTime?new Date(ev.start.dateTime).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}):'Ganztägig';
+      return `<div class="event"><time>${escapeHtml(startStr)}</time><div><strong>${escapeHtml(ev.summary||'(ohne Titel)')}</strong>${ev.location?`<small>${escapeHtml(ev.location)}</small>`:''}</div></div>`;
+    }).join('');
+  }catch(e){
+    el.innerHTML='<div class="event"><time>!</time><div><strong>Fehler beim Laden</strong></div></div>';
+  }
+}
+
+/* ---------- Fitbit (OAuth2 PKCE) ---------- */
+function randomString(len){const arr=new Uint8Array(len);crypto.getRandomValues(arr);return Array.from(arr,b=>('0'+b.toString(16)).slice(-2)).join('').slice(0,len);}
+async function sha256(str){return await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));}
+function base64urlEncode(buf){return btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
+
+async function connectFitbit(){
+  const clientId=safeGet('dash_fitbit_client_id');
+  if(!clientId){openSettings();return;}
+  const verifier=randomString(64);
+  safeSet('dash_fitbit_verifier',verifier);
+  const challenge=base64urlEncode(await sha256(verifier));
+  const params=new URLSearchParams({
+    client_id:clientId,
+    response_type:'code',
+    code_challenge:challenge,
+    code_challenge_method:'S256',
+    scope:'activity heartrate sleep profile',
+    redirect_uri:redirectUri()
+  });
+  location.href='https://www.fitbit.com/oauth2/authorize?'+params.toString();
+}
+document.getElementById('fitbit-connect').onclick=connectFitbit;
+
+async function handleFitbitCallback(){
+  const params=new URLSearchParams(location.search);
+  const code=params.get('code');
+  if(!code)return;
+  const clientId=safeGet('dash_fitbit_client_id');
+  const verifier=safeGet('dash_fitbit_verifier');
+  history.replaceState({},'',redirectUri());
+  if(!clientId||!verifier)return;
+  try{
+    const body=new URLSearchParams({client_id:clientId,grant_type:'authorization_code',code,code_verifier:verifier,redirect_uri:redirectUri()});
+    const res=await fetch('https://api.fitbit.com/oauth2/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body});
+    const data=await res.json();
+    if(data.access_token){
+      safeSet('dash_fitbit_token',data.access_token);
+      safeSet('dash_fitbit_refresh',data.refresh_token||'');
+      loadFitbit(data.access_token);
+    }else{
+      alert('Fitbit-Anmeldung fehlgeschlagen: '+(data.errors?.[0]?.message||'unbekannter Fehler'));
+    }
+  }catch(e){console.error(e);}
+}
+
+async function refreshFitbitToken(){
+  const clientId=safeGet('dash_fitbit_client_id');
+  const refresh=safeGet('dash_fitbit_refresh');
+  if(!clientId||!refresh)return false;
+  try{
+    const body=new URLSearchParams({client_id:clientId,grant_type:'refresh_token',refresh_token:refresh});
+    const res=await fetch('https://api.fitbit.com/oauth2/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body});
+    const data=await res.json();
+    if(data.access_token){
+      safeSet('dash_fitbit_token',data.access_token);
+      safeSet('dash_fitbit_refresh',data.refresh_token||refresh);
+      return true;
+    }
+  }catch(e){}
+  return false;
+}
+
+async function loadFitbit(token){
+  token=token||safeGet('dash_fitbit_token');
+  if(!token)return;
+  const btn=document.getElementById('fitbit-connect');
+  try{
+    const res=await fetch('https://api.fitbit.com/1/user/-/activities/date/today.json',{headers:{Authorization:'Bearer '+token}});
+    const data=await res.json();
+    if(data.errors){throw new Error('token invalid');}
+    const steps=data.summary?.steps??'—';
+    const rhr=data.summary?.restingHeartRate;
+    let sleepEff='—', sleepLabel='—';
+    try{
+      const sres=await fetch('https://api.fitbit.com/1.2/user/-/sleep/date/today.json',{headers:{Authorization:'Bearer '+token}});
+      const sdata=await sres.json();
+      if(sdata.sleep&&sdata.sleep.length){
+        sleepEff=sdata.sleep[0].efficiency;
+        const mins=sdata.summary.totalMinutesAsleep;
+        sleepLabel=Math.floor(mins/60)+'h '+(mins%60)+'m';
+      }
+    }catch(e){}
+    const pct=sleepEff!=='—'?sleepEff:0;
+    document.querySelector('.score b').textContent=sleepEff!=='—'?sleepEff:'—';
+    document.querySelector('.score').style.background=`conic-gradient(var(--bright) 0 ${pct}%, #3b3b39 ${pct}%)`;
+    document.querySelector('.score small').textContent='Schlafeffizienz';
+    const stats=document.querySelectorAll('.stat b');
+    stats[0].textContent=sleepLabel;
+    stats[1].textContent=steps;
+    stats[2].textContent=rhr?rhr+' bpm':'—';
+    btn.innerHTML='Fitbit verbunden<small>Erneut anmelden</small>';
+  }catch(e){
+    const refreshed=await refreshFitbitToken();
+    if(refreshed){loadFitbit(safeGet('dash_fitbit_token'));return;}
+    btn.innerHTML='Fitbit verbinden<small>Sitzung abgelaufen – erneut klicken</small>';
+    try{localStorage.removeItem('dash_fitbit_token')}catch(err){}
+  }
+}
+
+/* ---------- Automatische Aktualisierung ---------- */
+const REFRESH_MS=5*60*1000; // alle 5 Minuten neu laden
+setInterval(()=>{
+  const lat=safeGet('dash_geo_lat'), lon=safeGet('dash_geo_lon');
+  if(lat&&lon)fetchWeather(lat,lon);
+  trySilentGoogleLogin();
+  if(safeGet('dash_fitbit_token'))loadFitbit();
+},REFRESH_MS);
+
+/* ---------- Beim Laden ---------- */
+handleFitbitCallback();
+if(safeGet('dash_fitbit_token'))loadFitbit();
+(()=>{
+  const lat=safeGet('dash_geo_lat'), lon=safeGet('dash_geo_lon');
+  if(lat&&lon){document.getElementById('weather-status').textContent='Wird geladen';fetchWeather(lat,lon);}
+})();
+trySilentGoogleLogin();
+</script>
+</body></html>
